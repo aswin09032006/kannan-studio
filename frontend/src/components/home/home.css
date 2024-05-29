@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.homepage {
+  width: 100%;
+  min-height: 100vh; /* Ensure the content isn't cut off on smaller screens */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  padding: 20px; /* Add some padding for better spacing */
+}
+
+.description {
+  width: 100%;
+  flex: 1; /* Allow the description to take available space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  color: white;
+  margin-bottom: 20px; /* Adjust margin for responsiveness */
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.description h1 {
+  font-size: 2em; /* Responsive font size */
+  margin-bottom: 20px;
+}
+
+.book {
+  margin-top: 20px;
+  height: 45px;
+  width: 220px;
+  font-weight: bold;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background-color: #ffffff;
+  color: #252526;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book:hover {
+  background-color: #f0f0f0;
+}
+
+.book-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+.ig-icon,
+.fb-icon,
+.wa-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.icons-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .description h1 {
+    font-size: 1.5em;
+  }
+
+  .book {
+    height: 40px;
+    width: 200px;
+  }
+
+  .icons-container {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .description h1 {
+    font-size: 1.2em;
+  }
+
+  .book {
+    height: 35px;
+    width: 180px;
+  }
+
+  .icons-container {
+    gap: 10px;
+  }
+}

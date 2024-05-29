@@ -1,0 +1,135 @@
+/* Universal styles for margin and padding reset, and box-sizing border-box for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container for the About page */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #252526;
+  /* padding: 40px 20px; */
+}
+
+/* Grid container for displaying images */
+.grid-container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Grid items (images) styling */
+.grid-item {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Large items span two columns and rows */
+.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Heading styling */
+h1 {
+  color: #ffffff;
+  margin: 20px 0;
+  font-size: 36px;
+  text-align: center;
+}
+
+/* Details section container */
+.details {
+  display: block;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+/* Individual detail container styling */
+.details-container {
+  background: #ffffffa6;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+/* Title styling within detail container */
+.title h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Description text styling within detail container */
+.detail-description p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .large {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .details-container {
+    padding: 15px;
+  }
+
+  .title h2 {
+    font-size: 20px;
+  }
+
+  .detail-description p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 20px 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .grid-container {
+    width: 100%;
+    gap: 5px;
+  }
+
+  .details {
+    width: 100%;
+  }
+
+  .details-container {
+    padding: 10px;
+  }
+
+  .title h2 {
+    font-size: 18px;
+  }
+
+  .detail-description p {
+    font-size: 12px;
+  }
+}
