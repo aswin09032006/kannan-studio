@@ -1,52 +1,26 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import "./reservespot.css";
-import { useNavigate } from "react-router-dom";
+import emailjs from 'emailjs-com';
+import swal from 'sweetalert';
 
 const ReserveSpot = () => {
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [photo, setPhoto] = useState(false);
-  const [video, setVideo] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
-  const [location, setLocation] = useState("");
+  const form = useRef();
 
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    console.log("trying to fetch...");
 
-    try {
-      const response = await fetch("http://localhost:8081/reserve", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    emailjs
+      .sendForm('service_a31cfq3', 'template_8y1ufzo', form.current, 'sBx50jpBqLeVIdP6r')
+      .then(
+        () => {
+          swal('Success', 'Your message has been sent!', 'success');
+          form.current.reset();
+
         },
-        body: JSON.stringify({
-          date,
-          time,
-          photo, // This should be a boolean value
-          video, // This should be a boolean value
-          firstName,
-          lastName,
-          email,
-          number,
-          location,
-        }),
-      });
-      const data = await response.json();
-      if (response.status === 201) {
-        console.log("Data added successfully", data);
-        navigate("/");
-      } else {
-        console.log("Error adding data: ", data.error); // Log the error message
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+        (error) => {
+          swal('Failed', 'There was an error sending your message. Please try again.', 'error');
+        },
+      );
   };
 
   return (
@@ -54,7 +28,7 @@ const ReserveSpot = () => {
       <div className="Reserve">
         <div className="reserve-container">
           <h1>Reserve your spot</h1>
-          <form className="reserve-form-grid" onSubmit={handleSubmit}>
+          <form className="reserve-form-grid" ref={form} onSubmit={sendEmail}>
             <div className="reserve-form-group">
               <label htmlFor="date">Select a date</label>
               <input
@@ -63,8 +37,7 @@ const ReserveSpot = () => {
                 name="date"
                 required
                 placeholder="Date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+            
               />
             </div>
             <div className="reserve-form-group">
@@ -75,8 +48,6 @@ const ReserveSpot = () => {
                 name="time"
                 required
                 placeholder="Time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
               />
             </div>
 
@@ -91,8 +62,7 @@ const ReserveSpot = () => {
                   type="checkbox"
                   id="photoshoot"
                   name="service"
-                  checked={photo}
-                  onChange={(e) => setPhoto(e.target.checked)} // Use e.target.checked to toggle boolean state
+               
                 />
                 <label htmlFor="photoshoot">Photo shoot</label>
               </div>
@@ -107,8 +77,7 @@ const ReserveSpot = () => {
                   type="checkbox"
                   id="videoRecording"
                   name="service"
-                  checked={video}
-                  onChange={(e) => setVideo(e.target.checked)} // Use e.target.checked to toggle boolean state
+                
                 />
                 <label htmlFor="videoRecording">Video recording</label>
               </div>
@@ -122,8 +91,7 @@ const ReserveSpot = () => {
                 name="firstName"
                 required
                 placeholder="First name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                
               />
             </div>
             <div className="reserve-form-group">
@@ -134,8 +102,7 @@ const ReserveSpot = () => {
                 name="lastName"
                 required
                 placeholder="Last name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+            
               />
             </div>
 
@@ -147,8 +114,7 @@ const ReserveSpot = () => {
                 name="email"
                 required
                 placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+              
               />
             </div>
             <div className="reserve-form-group">
@@ -159,8 +125,7 @@ const ReserveSpot = () => {
                 name="phone"
                 required
                 placeholder="Phone number"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
+
               />
             </div>
 
@@ -172,12 +137,10 @@ const ReserveSpot = () => {
                 name="location"
                 required
                 placeholder="Location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
               />
             </div>
 
-            <button type="submit" className="book-now-button">
+            <button type="submit" className="book-now-button full-width">
               BOOK NOW
             </button>
           </form>

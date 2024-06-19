@@ -95,9 +95,8 @@ label {
   grid-column: span 2;
 }
 
-.book-now-button {
-  display: block;
-  width: 100%;
+.book-now-button.full-width{
+  grid-column: span 2;
   padding: 15px;
   background-color: black;
   color: white;

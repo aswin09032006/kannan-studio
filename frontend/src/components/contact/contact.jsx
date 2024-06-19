@@ -1,61 +1,38 @@
-import React, { useState } from "react";
+import React, {  useRef } from "react";
 import "./contact.css";
 import NavBar from "../utils/navbar";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
+import emailjs from 'emailjs-com';
+import swal from 'sweetalert';
 const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
-  const [url, setUrl] = useState("");
-  const [message, setMessage] = useState("");
+  const form = useRef();
 
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    console.log("Trying to fetch...");
 
-    try {
-      const response = await fetch("http://localhost:8081/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    emailjs
+      .sendForm(
+        "service_a31cfq3",
+        "template_quhfq2f",
+        form.current,
+        "sBx50jpBqLeVIdP6r"
+      )
+      .then(
+        () => {
+          swal("Success", "Your message has been sent!", "success");
+          form.current.reset();
         },
-        body: JSON.stringify({
-          name,
-          email,
-          number,
-          url,
-          message,
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Data added successfully", data);
-
-        setName("");
-        setEmail("");
-        setNumber("");
-        setUrl("");
-        setMessage("");
-
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Thank you for your message. It has been sent.",
-          confirmButtonText: "OK",
-        });
-      } else {
-        const data = await response.json();
-        console.error("Error adding data: ", data);
-      }
-    } catch (error) {
-      console.error("Error submitting form: ", error);
-    }
+        (error) => {
+          swal(
+            "Failed",
+            "There was an error sending your message. Please try again.",
+            "error"
+          );
+        }
+      );
   };
+
 
   return (
     <div>
@@ -81,7 +58,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="form-container">
-          <form onSubmit={handleSubmit}>
+          <form ref={form} onSubmit={sendEmail}>
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -91,8 +68,7 @@ const Contact = () => {
               placeholder="Name"
               className="name"
               aria-label="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              
             />
             <label htmlFor="email">Email</label>
             <input
@@ -103,8 +79,7 @@ const Contact = () => {
               placeholder="Email"
               className="email"
               aria-label="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+             
             />
             <label htmlFor="phone">Phone Number</label>
             <input
@@ -115,8 +90,7 @@ const Contact = () => {
               placeholder="Phone Number"
               className="phone"
               aria-label="Phone Number"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
+             
             />
             <label htmlFor="website">Website (Optional)</label>
             <input
@@ -126,8 +100,7 @@ const Contact = () => {
               placeholder="Website"
               className="website"
               aria-label="Website"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+             
             />
             <label htmlFor="message">Message</label>
             <textarea
@@ -136,8 +109,7 @@ const Contact = () => {
               placeholder="Message"
               className="message"
               aria-label="Message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+             
             ></textarea>
             <button type="submit" className="submit-contact">
               Submit

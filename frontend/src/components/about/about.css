@@ -1,20 +1,16 @@
-/* Universal styles for margin and padding reset, and box-sizing border-box for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Container for the About page */
 .about-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #252526;
-  /* padding: 40px 20px; */
 }
 
-/* Grid container for displaying images */
 .grid-container {
   width: 90%;
   display: grid;
@@ -23,7 +19,6 @@
   margin-bottom: 20px;
 }
 
-/* Grid items (images) styling */
 .grid-item {
   width: 100%;
   height: auto;
@@ -31,14 +26,12 @@
   border-radius: 10px;
 }
 
-/* Large items span two columns and rows */
 .large {
   grid-column: span 2;
   grid-row: span 2;
 }
 
-/* Heading styling */
-h1 {
+.about-container h1 {
   color: #ffffff;
   margin: 20px 0;
   font-size: 36px;
@@ -52,7 +45,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Individual detail container styling */
 .details-container {
   background: #ffffffa6;
   padding: 20px;
@@ -64,7 +56,6 @@ h1 {
   text-align: center;
 }
 
-/* Title styling within detail container */
 .title h2 {
   font-size: 24px;
   font-weight: 600;
@@ -72,14 +63,12 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* Description text styling within detail container */
 .detail-description p {
   font-size: 16px;
   color: #666;
   line-height: 1.5;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
