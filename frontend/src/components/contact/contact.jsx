@@ -1,12 +1,10 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import "./contact.css";
 import NavBar from "../utils/navbar";
-import emailjs from 'emailjs-com';
-import swal from 'sweetalert';
+import emailjs from "emailjs-com";
+import swal from "sweetalert";
 const Contact = () => {
   const form = useRef();
-
-
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -32,7 +30,6 @@ const Contact = () => {
         }
       );
   };
-
 
   return (
     <div>
@@ -68,7 +65,6 @@ const Contact = () => {
               placeholder="Name"
               className="name"
               aria-label="Name"
-              
             />
             <label htmlFor="email">Email</label>
             <input
@@ -79,7 +75,6 @@ const Contact = () => {
               placeholder="Email"
               className="email"
               aria-label="Email"
-             
             />
             <label htmlFor="phone">Phone Number</label>
             <input
@@ -90,7 +85,6 @@ const Contact = () => {
               placeholder="Phone Number"
               className="phone"
               aria-label="Phone Number"
-             
             />
             <label htmlFor="website">Website (Optional)</label>
             <input
@@ -100,7 +94,6 @@ const Contact = () => {
               placeholder="Website"
               className="website"
               aria-label="Website"
-             
             />
             <label htmlFor="message">Message</label>
             <textarea
@@ -109,7 +102,6 @@ const Contact = () => {
               placeholder="Message"
               className="message"
               aria-label="Message"
-             
             ></textarea>
             <button type="submit" className="submit-contact">
               Submit

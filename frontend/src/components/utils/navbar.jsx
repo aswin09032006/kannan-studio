@@ -25,7 +25,9 @@ const NavBar = () => {
           alt="Kannan Studio Logo"
           style={{ height: "50px" }}
         />
-        <h3>Kannan Studio</h3>
+        <a href="/" style={{ textDecoration: "none", color: "white" }}>
+          <h3>Kannan Studio</h3>
+        </a>
       </div>
       <nav className="nav-overlay" ref={navRef}>
         <a href="/home">Home</a>
