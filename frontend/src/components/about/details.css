@@ -27,27 +27,27 @@
   object-fit: cover;
 }
 
-
-
 .details {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center align the items */
   padding: 20px;
   width: 80%;
-
   color: #333;
 }
 
 .details-container {
-  background: #828282; /* White background for cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #828282;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  border: 1px solid #e0e0e0; /* Light border */
-  text-align: center; /* Center text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  text-align: justify;
 }
 
 .title h2 {
